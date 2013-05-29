@@ -1,0 +1,6 @@
+#ifndef _TCP_SERVER_DEFINE_H_
+#define _TCP_SERVER_DEFINE_H_
+
+#define MAX_SOCKET_BUFFER_SIZE	40960
+
+#endif

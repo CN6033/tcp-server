@@ -14,11 +14,7 @@
 #include "exception.h"
 #include "socket_buffer.h"
 #include "util.h"
-#include "thread_pool.h"
 #include "socket.h"
-#include "debug.h"
-
-#define EPOLL_MAXEVENTS 64
 
 namespace TCP_SERVER
 {
@@ -37,7 +33,6 @@ public:
         event.data.fd = sockfd;
         
         if(epoll_ctl(epfd_, EPOLL_CTL_ADD, sockfd, &event) == -1 ) {
-        	PERRNO(errno);
             throw SocketException("epoll_ctl() error!");
         }
         

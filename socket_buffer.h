@@ -7,9 +7,11 @@
 #include <cstring>
 
 #include "exception.h"
+#include "define.h"
 
 namespace TCP_SERVER
 {
+
 class SocketBuffer
 {
 public:
@@ -22,20 +24,25 @@ public:
 	
 	void Append(const char* data)
 	{
-		time_ = time((time_t*)0);
-		
+		//time_ = time((time_t*)0);
 		size_t len = strlen(data);
-		if(strlen(buf_) + len >= max_size_){
-			char * new_buf = (char*)realloc (buf_, max_size_*2);
+		
+		while(strlen(buf_) + len >= max_size_){
+			int new_size = max_size_*2;
+			if(new_size > MAX_SOCKET_BUFFER_SIZE){
+				new_size = MAX_SOCKET_BUFFER_SIZE;
+			}
+			char* new_buf = (char*)realloc(buf_, new_size);
 			if(new_buf){
 				buf_ = new_buf;
-				max_size_ = max_size_*2;
+				max_size_ = new_size;
 			}
 			else{
 				throw SocketException("bad alloc!");
 			}
 		}
-		strncat (buf_, data, len);
+		int buf_size = strlen(buf_);
+		strncat (buf_, data, (len < (max_size_ - buf_size))?len : (max_size_ - buf_size - 1));
 	}
 	
 	void Clear()

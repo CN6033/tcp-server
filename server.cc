@@ -13,8 +13,8 @@
 namespace TCP_SERVER
 {
 
-static void Bind(int fd, int port);
-static void Listen(int fd, int num);
+static void Bind(int, int);
+static void Listen(int, int);
 
 Server::Server(int port=8000)
 		:port_(port),max_buf_(1024),conn_num_(10),\
@@ -33,7 +33,6 @@ void Server::Start()
 	Listen(this->serv_socket_, this->conn_num_);
 	Epoll epoll_serv(this->serv_socket_);
 	epoll_serv.Run();
-	
 	}catch(SocketException& se){
 		throw;
 	}catch(...){

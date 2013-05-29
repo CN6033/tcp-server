@@ -7,4 +7,4 @@ server.o:	server.cc	exception.h	util.h	epoll.h
 epoll.o:	epoll.cc	assert.h	socket_buffer.h	util.h
 	g++	-std=c++0x -Wall -O -c epoll.cc
 clean:
-	rm	tcp_server	*.o
+	rm  tcp_server  *.o
