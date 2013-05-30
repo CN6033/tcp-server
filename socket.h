@@ -1,3 +1,10 @@
+/*
+ * File:	socket.h
+ * Author:	huang shitao
+ * Email:	hstaos@gmail.com
+ * Update:	2013-5-30 by huang shitao
+ */
+
 #ifndef _TCP_SERVER_SOCKET_H_
 #define _TCP_SERVER_SOCKET_H_
 

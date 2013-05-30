@@ -1,3 +1,10 @@
+/*
+ * File:	debug.h
+ * Author:	huang shitao
+ * Email:	hstaos@gmail.com
+ * Update:	2013-5-30 by huang shitao
+ */
+
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
