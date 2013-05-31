@@ -27,8 +27,7 @@ Server::Server(int port=8000)
 		:port_(port),max_buf_(1024),conn_num_(10),\
 		serv_socket_(socket(AF_INET,SOCK_STREAM,0))
 {
-	if(serv_socket_.get() == -1)
-	{
+	if(serv_socket_.get() == -1){
 		throw SocketException("Create server socket error!");
 	}
 }
@@ -55,20 +54,20 @@ static void Bind(int fd, int port)
 	serv_addr.sin_port = htons(port);
 	
 	const int YES = 1;
-	if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &YES, sizeof(int)) == -1) {
+	if(setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &YES, sizeof(int)) == -1){
         throw SocketException("Set socket option error!");
     }
     
     SetSockNonBlock(fd);
     
-    if (bind(fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+    if(bind(fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1){
         throw SocketException("Bind socket error!");
     }
 }
 
 static void Listen(int fd, int num)
 {
-	if (listen(fd, num) == -1) {
+	if(listen(fd, num) == -1){
 		throw SocketException("Listen socket error!");
     }
 }
