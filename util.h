@@ -15,14 +15,15 @@
 
 namespace TCP_SERVER
 {
-static void SetSockNonBlock(int fd) {
+static void SetSockNonBlock(int fd)
+{
     int flags;
     flags = fcntl(fd, F_GETFL, 0);
-    if (flags < 0) {
+    if(flags < 0){
         throw SocketException("Set socket non block error!");
     }
     
-    if (fcntl(fd, F_SETFL, flags | O_NONBLOCK) < 0) {
+    if(fcntl(fd, F_SETFL, flags | O_NONBLOCK) < 0){
         throw SocketException("fcntl(F_SETFL) failed!");
     }
 }

@@ -1,7 +1,6 @@
 /*
  * File:	server.cc
- * Author:	huang shitao
- * Email:	hstaos@gmail.com
+ * Author:	huang shitao (hstaos@gmail.com)
  * Update:	2013-5-30 by huang shitao
  */
 
@@ -27,8 +26,7 @@ Server::Server(int port=8000)
 		:port_(port),max_buf_(1024),conn_num_(10),\
 		serv_socket_(socket(AF_INET,SOCK_STREAM,0))
 {
-	if(serv_socket_.get() == -1)
-	{
+	if(serv_socket_.get() == -1){
 		throw SocketException("Create server socket error!");
 	}
 }

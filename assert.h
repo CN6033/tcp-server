@@ -1,7 +1,6 @@
 /*
  * File:	assert.h
- * Author:	huang shitao
- * Email:	hstaos@gmail.com
+ * Author:	huang shitao (hstaos@gmail.com)
  * Update:	2013-5-30 by huang shitao
  */
 

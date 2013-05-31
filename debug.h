@@ -1,7 +1,6 @@
 /*
  * File:	debug.h
- * Author:	huang shitao
- * Email:	hstaos@gmail.com
+ * Author:	huang shitao (hstaos@gmail.com)
  * Update:	2013-5-30 by huang shitao
  */
 
@@ -11,7 +10,8 @@
 #include <stdio.h>
 #include <string.h>
 
-static void DEBUG(const char* filename, int line){
+static void DEBUG(const char* filename, int line)
+{
 	printf("@%s:%d\n", filename, line);
 }
 

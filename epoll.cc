@@ -1,7 +1,6 @@
 /*
  * File:	epoll.cc
- * Author:	huang shitao
- * Email:	hstaos@gmail.com
+ * Author:	huang shitao （hstaos@gmail.com）
  * Update:	2013-5-30 by huang shitao
  */
 
@@ -20,6 +19,7 @@
 #include "assert.h"
 #include "socket_buffer.h"
 #include "util.h"
+#include "define.h"
 
 namespace TCP_SERVER
 {
@@ -88,11 +88,11 @@ void Epoll::Run()
             	int recv_socket;
             	int recv_size;
             	recv_socket = this->events_[i].data.fd;
-            	const static int BUF_SIZE = 10240;
-            	char buffer[BUF_SIZE];
+            	//const static int BUF_SIZE = 10240;
+            	char buffer[SOCKET_BUFFER_SIZE];
                 memset(buffer, 0, sizeof(buffer));
                 
-                if ((recv_size = recv(recv_socket, buffer, BUF_SIZE, 0)) == -1  
+                if ((recv_size = recv(recv_socket, buffer, SOCKET_BUFFER_SIZE, 0)) == -1  
                 		&& ((errno != EAGAIN)&&(errno != EWOULDBLOCK))) {
                     /*recv在non-blocking模式下，返回-1且errno为EAGAIN或EWOULDBLOCK表示当前无可读数据，并不表示错误*/
                     Socket sock(recv_socket);
@@ -109,7 +109,7 @@ void Epoll::Run()
                 	}
                 	EpollCtl(this->epfd_, EPOLL_CTL_DEL, sock, NULL);
                 }
-                else if(recv_size < BUF_SIZE){
+                else if(recv_size < SOCKET_BUFFER_SIZE){
                 	/*Recv completed*/
                 	std::unordered_map<int, boost::shared_ptr<SocketBuffer> >::const_iterator iter 
                 			= this->recv_buffer_.find(recv_socket);

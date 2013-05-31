@@ -1,7 +1,6 @@
 /*
  * File:	socket_buffer.h
- * Author:	huang shitao
- * Email:	hstaos@gmail.com
+ * Author:	huang shitao （hstaos@gmail.com）
  * Update:	2013-5-30 by huang shitao
  */
 
@@ -22,7 +21,9 @@ namespace TCP_SERVER
 class SocketBuffer
 {
 public:
-	SocketBuffer(int size = 1024)
+    /*将socket buffer的大小默认设置为recv函数接收数据报的缓冲区大小。
+    之所以这么设置，是期望能减小socket buffer调用realloc的次数。*/
+	SocketBuffer(int size = SOCKET_BUFFER_SIZE)
 		:max_size_(size), time_(time((time_t*)0))
 	{
 		buf_ = (char*)malloc(sizeof(char)* max_size_);
@@ -31,7 +32,6 @@ public:
 	
 	void Append(const char* data)
 	{
-		//time_ = time((time_t*)0);
 		size_t len = strlen(data);
 		
 		while(strlen(buf_) + len >= max_size_){
